@@ -1,27 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb } from '../../utilities/LocalStorage';
+// import { addToDb } from '../../../public/Utilities/LocalStorage';
 import Cart from '../Cart/Cart';
 import Products from '../Products/Products';
 import "./Shop.css"
 
 const Shop = () => {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json")
+        fetch("Products.json")
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
 
+
+
+    const addToCart = product => {
+        // console.log(product);
+        let productItems = [...cart, product];
+        setCart(productItems);
+        // addToDb(id);
+        // addToDb(product.id)
+        addToDb(product.id)
+
+
+    }
+
     return (
-        <div>
+        <div className='shop'>
             <div className='products'>
                 {
-                    products.map(product => <Products product={product}></Products>
+                    products.map(product => <Products
+                        product={product}
+                        key={product.id}
+                        addToCart={addToCart}
+
+                    ></Products>
                     )
                 }
             </div>
-            <Cart></Cart>
+            <Cart cart={cart}></Cart>
         </div>
     );
 };

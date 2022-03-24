@@ -1,5 +1,21 @@
-.product {}
+.product {
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin: 10px;
+    position: relative;
+    padding-bottom: 30px;
+}
 
 .product img {
     width: 250px;
+}
+.product button{
+    display: block;
+    width: 100%;
+    background-color: #FFE0B3;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
 }
